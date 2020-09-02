@@ -34,6 +34,10 @@ fdd_client = FddClient('appId', 'appKey')
 #指定环境请求 log 日志默认关闭
 fdd_client = FddClient('appId', 'appKey', request_url='请求url', log=True)
 
+#设置超时时间 默认不设置 单位秒
+fdd_client = FddClient('appId', 'appKey', request_url='请求url', log=True, timeout=2)
+
+
 #获取token
 try:
     result = Oauth2Client.get_token(fdd_client)

@@ -15,7 +15,8 @@ class HashUtils:
         try:
             return hmac.new(secret, data, digestmod='sha256').hexdigest()
         except Exception as e:
-            raise ClientException('hmac256_hex', '获取hmac256hex数据失败', 'hmac256_hex 获取hmac256hex数据失败：%s' % e)
+            raise ClientException('hmac256_hex', '获取hmac256hex数据失败',
+                                  log='hmac256_hex 获取hmac256hex数据失败：%s' % e.__str__())
 
     # hmc256返回字节
     @staticmethod
@@ -23,7 +24,8 @@ class HashUtils:
         try:
             return hmac.new(secret, data, digestmod='sha256').digest()
         except Exception as e:
-            raise ClientException('hmac256_bytes', '获取hmac256bytes数据失败', 'hmac256_bytes 获取hmac256bytes数据失败：%s' % e)
+            raise ClientException('hmac256_bytes', '获取hmac256bytes数据失败',
+                                  log='hmac256_bytes 获取hmac256bytes数据失败：%s' % e.__str__())
 
     # sha256获取hex字符串
     @staticmethod
@@ -32,7 +34,7 @@ class HashUtils:
             data = data.encode()
             return hashlib.sha256(data).hexdigest();
         except Exception as e:
-            raise ClientException('sha256_hex', '字符串sha256失败', 'sha256_hex 字符串sha256失败：%s' % e)
+            raise ClientException('sha256_hex', '字符串sha256失败', log='sha256_hex 字符串sha256失败：%s' % e.__str__())
 
     # 获取签名信息
     @staticmethod
@@ -45,7 +47,7 @@ class HashUtils:
             paramsHexBytes = paramsHex.encode(Params.ENCODE_TYPE)
             return HashUtils.hmac256_hex(firstHmac, paramsHexBytes);
         except Exception as e:
-            raise ClientException('sign', '签名失败', 'sign 签名失败：%s' % e)
+            raise ClientException('sign', '签名失败', log='sign 签名失败：%s' % e.__str__())
 
     # 字典排序后拼接成字符串
     @staticmethod
@@ -57,7 +59,7 @@ class HashUtils:
                 result_str += Params.DICT_TO_STR % (param_key, param_value)
             return result_str[:-1]
         except Exception as e:
-            raise ClientException('sort_params', '字典数据排序拼接失败', 'sort_params 字典数据排序拼接失败：%s' % e)
+            raise ClientException('sort_params', '字典数据排序拼接失败', log='sort_params 字典数据排序拼接失败：%s' % e.__str__())
 
     # 获取签名后的请求头字典
     @staticmethod
@@ -95,7 +97,7 @@ class HashUtils:
             header_dict[Params.SIGN_KEY] = sign_str
             return header_dict, params_dict
         except Exception as e:
-            raise ClientException('get_sign', '获取签名值失败', 'get_sign 获取签名值失败：%s' % e)
+            raise ClientException('get_sign', '获取签名值失败', log='get_sign 获取签名值失败：%s' % e.__str__())
 
     # 文件字节sha256 hex值
     @staticmethod
@@ -106,7 +108,7 @@ class HashUtils:
             return sh.hexdigest()
         except Exception as e:
             raise ClientException('sha256_bytes_hex', 'bytes类型数据sha256失败',
-                                  'sha256_bytes_hex bytes类型数据sha256失败：%s' % e)
+                                  log='sha256_bytes_hex bytes类型数据sha256失败：%s' % e.__str__())
 
     # 文件sha256 hex值
     @staticmethod
@@ -116,4 +118,4 @@ class HashUtils:
                 res = f.read()
             return HashUtils.sha256_bytes_hex(res)
         except Exception as e:
-            raise ClientException('sha256_file_hex', '文件sha256失败', 'sha256_file_hex 文件sha256失败：%s' % e)
+            raise ClientException('sha256_file_hex', '文件sha256失败', log='sha256_file_hex 文件sha256失败：%s' % e.__str__())

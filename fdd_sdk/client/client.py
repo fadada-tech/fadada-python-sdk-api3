@@ -11,10 +11,12 @@ class FddClient():
     app_key = ''
     request_url = 'https://saas-gw.fadada.com/api/v3/'
     log = False
+    timeout = None
 
-    def __init__(self, app_id, app_key, request_url='', log=False):
+    def __init__(self, app_id, app_key, request_url='', timeout=None, log=False):
         FddClient.app_id = app_id
         FddClient.app_key = app_key
+        FddClient.timeout = timeout
         if request_url is not None and str.startswith(request_url, 'http:') or str.startswith(request_url, 'https:'):
             FddClient.request_url = request_url
         FddClient.log = log == True
@@ -34,17 +36,17 @@ class CommonClient(FddClient):
             if type == 'post_json':
                 result_json = HttpUtils.request_post_sign(self.request_url + url, self.app_id, self.app_key, token,
                                                           data,
-                                                          files).json()
+                                                          files=files, timeout=self.timeout).json()
             if type == 'get_json':
                 result_json = HttpUtils.request_get_sign(self.request_url + url, self.app_id, self.app_key, token,
-                                                         data).json()
+                                                         data, timeout=self.timeout).json()
             result = None
             if type == 'post_stream':
                 result = HttpUtils.request_post_sign(self.request_url + url, self.app_id, self.app_key, token,
-                                                     data)
+                                                     data, timeout=self.timeout)
             if type == 'get_stream':
                 result = HttpUtils.request_get_sign(self.request_url + url, self.app_id, self.app_key, token,
-                                                    data)
+                                                    data, timeout=self.timeout)
 
             if result is not None and result.headers['content-type'].__contains__('application/json'):
                 result_json = result.json()
