@@ -63,7 +63,7 @@ class HashUtils:
 
     # 获取签名后的请求头字典
     @staticmethod
-    def get_sign(app_id, app_key, token=None, data={}):
+    def get_sign(app_id, app_key, token=None, user_token=None, data={}):
         try:
             params_heacer_dict = {}
             params_dict = {}
@@ -72,7 +72,7 @@ class HashUtils:
             if type(data) is str:
                 params_dict[Params.BIZ_CONTENT_KEY] = data
                 params_heacer_dict.update(params_dict)
-            elif data is not None and len(data) > 0:
+            elif data is not None:
                 params_dict[Params.BIZ_CONTENT_KEY] = json.dumps(data)
                 params_heacer_dict.update(params_dict)
 
@@ -82,9 +82,12 @@ class HashUtils:
             header_dict[Params.NONCE_KEY] = uuid.uuid4().__str__().replace('-', '')
             header_dict[Params.APP_ID_KEY] = app_id
             header_dict[Params.SIGN_TYPE_KEY] = Params.SIGN_TYPE
+            # userToken不为空就放入请求头里面
+            if user_token is not None and len(user_token) != 0:
+                header_dict[Params.USER_TOKEN] = user_token
 
             # token不为空就放入请求头里面
-            if token is not None:
+            if token is not None and len(token) != 0:
                 header_dict[Params.TOKEN_KEY] = token
             else:
                 header_dict[Params.GRANT_TYPE_KEY] = Params.GRANT_TYPE

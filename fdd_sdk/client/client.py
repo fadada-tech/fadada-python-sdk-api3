@@ -9,7 +9,9 @@ logging.basicConfig(format='%(asctime)s - '
 class FddClient():
     app_id = ''
     app_key = ''
-    request_url = 'https://saas-gw.fadada.com/api/v3/'
+    request_url = 'https://openapi.fadada.com/api/v3/'
+    token = ''
+    user_token = ''
     log = False
     timeout = None
 
@@ -21,6 +23,12 @@ class FddClient():
             FddClient.request_url = request_url
         FddClient.log = log == True
 
+    def set_token(self, token):
+        self.token = token
+
+    def set_user_token(self, user_token):
+        self.user_token = user_token
+
 
 from fdd_sdk.utils.globals_params import Params
 from fdd_sdk.exception.exceptions import ClientException
@@ -31,22 +39,22 @@ from fdd_sdk.utils.https import HttpUtils
 # 公共客户端
 class CommonClient(FddClient):
 
-    def request(self, url, type='post_json', token=None, data={}, files={}):
+    def request(self, url, type='post_json', data={}, files={}):
         try:
             if type == 'post_json':
-                result_json = HttpUtils.request_post_sign(self.request_url + url, self.app_id, self.app_key, token,
-                                                          data,
-                                                          files=files, timeout=self.timeout).json()
+                result_json = HttpUtils.request_post_sign(self.request_url + url, self.app_id, self.app_key, self.token,
+                                                          self.user_token, data, files=files,
+                                                          timeout=self.timeout).json()
             if type == 'get_json':
-                result_json = HttpUtils.request_get_sign(self.request_url + url, self.app_id, self.app_key, token,
-                                                         data, timeout=self.timeout).json()
+                result_json = HttpUtils.request_get_sign(self.request_url + url, self.app_id, self.app_key, self.token,
+                                                         self.user_token, data, timeout=self.timeout).json()
             result = None
             if type == 'post_stream':
-                result = HttpUtils.request_post_sign(self.request_url + url, self.app_id, self.app_key, token,
-                                                     data, timeout=self.timeout)
+                result = HttpUtils.request_post_sign(self.request_url + url, self.app_id, self.app_key, self.token,
+                                                     self.user_token, data, timeout=self.timeout)
             if type == 'get_stream':
-                result = HttpUtils.request_get_sign(self.request_url + url, self.app_id, self.app_key, token,
-                                                    data, timeout=self.timeout)
+                result = HttpUtils.request_get_sign(self.request_url + url, self.app_id, self.app_key, self.token,
+                                                    self.user_token, data, timeout=self.timeout)
 
             if result is not None and result.headers['content-type'].__contains__('application/json'):
                 result_json = result.json()
@@ -76,20 +84,20 @@ class CommonClient(FddClient):
 
     # post 请求 返回json
     @staticmethod
-    def post_json(self, url, token=None, data={}, files={}):
-        return CommonClient.request(self, url, "post_json", token, data, files)
+    def post_json(self, url, data={}, files={}):
+        return CommonClient.request(self, url, "post_json", data, files)
 
     # get请求 返回json
     @staticmethod
-    def get_json(self, url, token=None, data={}):
-        return CommonClient.request(self, url, "get_json", token, data)
+    def get_json(self, url, data={}):
+        return CommonClient.request(self, url, "get_json", data)
 
     # post 请求 返回stream
     @staticmethod
-    def post_stream(self, url, token=None, data={}):
-        return CommonClient.request(self, url, "post_stream", token, data)
+    def post_stream(self, url, data={}):
+        return CommonClient.request(self, url, "post_stream", data)
 
     # get请求 返回stream
     @staticmethod
-    def get_stream(self, url, token=None, data={}):
-        return CommonClient.request(self, url, "get_stream", token, data)
+    def get_stream(self, url, data={}):
+        return CommonClient.request(self, url, "get_stream", data)

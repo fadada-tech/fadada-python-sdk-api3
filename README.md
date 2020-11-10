@@ -22,6 +22,10 @@ pip install -r requirements.txt
 
 下面是配置以及获取token的demo：
 token的有效期是2个小时，不一定每一次请求都要获取token。
+调用set_token方法设置token
+
+如果是第三方应用 请求接口时候加入userToken
+调用set_user_token方法设置user_token
 
 ```python
 from fdd_sdk.client.client import FddClient

@@ -11,6 +11,7 @@ class Params:
     TIMESTAMP_KEY = 'X-FDD-Api-Timestamp'
     NONCE_KEY = 'X-FDD-Api-Nonce'
     GRANT_TYPE_KEY = 'X-FDD-Api-Grant-Type'
+    USER_TOKEN = 'X-FDD-Api-User-Token'
     SIGN_KEY = 'X-FDD-Api-Sign'
     BIZ_CONTENT_KEY = 'bizContent'
     # 签名方式

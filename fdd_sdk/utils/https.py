@@ -26,9 +26,9 @@ class HttpUtils:
 
     # post方法（无需签名，内部已处理）
     @staticmethod
-    def request_get_sign(url, app_id, app_key, token=None, data={}, timeout=None) -> Response:
+    def request_get_sign(url, app_id, app_key, token=None, user_token=None, data={}, timeout=None) -> Response:
         try:
-            headers, params = HashUtils.get_sign(app_id, app_key, token, data)
+            headers, params = HashUtils.get_sign(app_id, app_key, token, user_token, data)
             response = requests.get(url, params=params, headers=headers, timeout=timeout)
             return response
         except Exception as e:
@@ -36,9 +36,10 @@ class HttpUtils:
 
     # post方法（无需签名，内部已处理）
     @staticmethod
-    def request_post_sign(url, app_id, app_key, token=None, data={}, files={}, timeout=None) -> Response:
+    def request_post_sign(url, app_id, app_key, token=None, user_token=None, data={}, files={},
+                          timeout=None) -> Response:
         try:
-            headers, params = HashUtils.get_sign(app_id, app_key, token, data)
+            headers, params = HashUtils.get_sign(app_id, app_key, token, user_token, data)
             response = requests.post(url, data=params, headers=headers, files=files, timeout=timeout)
             return response
         except ClientException as e:
