@@ -11,8 +11,10 @@ COMPANY_SEAL_DETAIL = '/seal/companySealDetail'
 
 class SealClient(FddClient):
     # 上传企业印章
-    def add_company_seal(self, token, data={}):
-        return CommonClient.post_json(self, ADD_COMPANY_SEAL, token, data)
+    def add_company_seal(self, token, file,data={}):
+        files = {}
+        files['image'] = file
+        return CommonClient.post_json(self, ADD_COMPANY_SEAL, token, data, files)
 
     # 删除企业印章
     def del_company_seal(self, token, data={}):
