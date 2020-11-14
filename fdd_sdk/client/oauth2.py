@@ -15,7 +15,7 @@ class Oauth2Client(FddClient):
 
     # 获取token
     def get_token(self, data={}):
-        return CommonClient.post_json(self, GET_TOKEN_PATH)
+        return CommonClient.post_json(self, GET_TOKEN_PATH, None)
 
     # 获取授权地址
     def get_authorize_url(self, data):
