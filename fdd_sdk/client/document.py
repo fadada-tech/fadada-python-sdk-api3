@@ -5,13 +5,13 @@ from .client import FddClient
 文件相关接口
 """
 
-UPLOAD_FILE = 'documents/uploadFile'
-GET_BY_SIGN_FILE_ID = 'documents/getBySignFileId'
-GET_BY_DRAFT_ID = 'documents/getByDraftId'
-LOOK_UP_COORDINATES = 'documents/lookUpCoordinates'
-VERIFY_SIGNATURE = 'documents/verifySignature'
-CONTRACT_REPORT_DOWNLOAD = 'documents/professionalContractReportDownload'
-DOWNLOAD_EVIDENCE_REPORT = 'documents/downloadEvidenceReport'
+UPLOAD_FILE = '/documents/uploadFile'
+GET_BY_SIGN_FILE_ID = '/documents/getBySignFileId'
+GET_BY_DRAFT_ID = '/documents/getByDraftId'
+LOOK_UP_COORDINATES = '/documents/lookUpCoordinates'
+VERIFY_SIGNATURE = '/documents/verifySignature'
+CONTRACT_REPORT_DOWNLOAD = '/documents/professionalContractReportDownload'
+DOWNLOAD_EVIDENCE_REPORT = '/documents/downloadEvidenceReport'
 
 
 class DocumentClient(FddClient):

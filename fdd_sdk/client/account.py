@@ -10,12 +10,14 @@ GET_PERSON_INFO_PATH = '/accounts/getPersonInfo'
 GET_COMPANY_UNIONID_URL_PATH = '/accounts/getCompanyUnionIdUrl'
 GET_COMPANY_INFO_PATH = '/accounts/getCompanyInfo'
 CHECK_ACCOUNT_INFO_PATH = '/accounts/checkAccountInfo'
-GET_ACCESS_OBJECT_INFO = 'accounts/getAccessObjectInfo'
+GET_ACCESS_OBJECT_INFO = '/accounts/getAccessObjectInfo'
+
+GET_FILE_BASE64 = '/accounts/getFileBase64'
 
 # 第三方服务相关接口
-GET_OPEN_SERVER_URL = 'thirdUser/getOpenServerUrl'
-GET_USER_TOKEN = 'thirdUser/getUserToken'
-CANCE_SERVER = 'thirdUser/cancel'
+GET_OPEN_SERVER_URL = '/thirdUser/getOpenServerUrl'
+GET_USER_TOKEN = '/thirdUser/getUserToken'
+CANCE_SERVER = '/thirdUser/cancel'
 
 
 class AccountClient(FddClient):
@@ -55,3 +57,7 @@ class AccountClient(FddClient):
     # 取消第三方授权
     def cancel_server(self, data):
         return CommonClient.post_json(self, CANCE_SERVER, data)
+
+    # 根据uuid下载文件base64
+    def get_file_base64(self, data):
+        return CommonClient.post_json(self, GET_FILE_BASE64, data)

@@ -7,8 +7,8 @@ from .client import CommonClient
 GET_TOKEN_PATH = '/oauth2/accessToken'
 GET_AUTHORIZE_URL_PATH = '/oauth2/getAuthorizeUrl'
 
-GET_AUTO_SIGN_AUTH_URL = "oauth2/getAutoSignAuthUrl";
-CANCEL_AUTH_SIGN_AUTH = "oauth2/cancelAuthSignAuth";
+GET_AUTO_SIGN_AUTH_URL = "/oauth2/getAutoSignAuthUrl";
+CANCEL_AUTH_SIGN_AUTH = "/oauth2/cancelAuthSignAuth";
 
 
 class Oauth2Client(FddClient):
@@ -28,5 +28,3 @@ class Oauth2Client(FddClient):
     # 取消自动签署授权
     def cancel_auth_sign_auth(self, data):
         return CommonClient.post_json(self, CANCEL_AUTH_SIGN_AUTH, data)
-
-

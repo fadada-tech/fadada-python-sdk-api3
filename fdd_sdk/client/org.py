@@ -5,13 +5,13 @@ from .client import FddClient
 组织相关接口
 '''
 
-GET_CHILD_COMPANY_LIST = 'org/group/getChildCompanyList'
-GET_EMPLOYEE = 'org/group/getEmployee'
-GET_ADD_EMPLOYEE_URL = 'org/group/getAddEmployeeUrl'
-DEL_EMPLOYEE = 'org/group/delEmployee'
-GET_ADD_SUB_COMPANY_URL = 'org/group/getAddSubCompanyUrl'
-REMOVE_SUB_COMPANY = 'org/group/removeSubCompany'
-GET_CHANGE_COMPANY_MAJOR_URL = 'org/group/getChangeCompanyMajorUrl'
+GET_CHILD_COMPANY_LIST = '/org/group/getChildCompanyList'
+GET_EMPLOYEE = '/org/group/getEmployee'
+GET_ADD_EMPLOYEE_URL = '/org/group/getAddEmployeeUrl'
+DEL_EMPLOYEE = '/org/group/delEmployee'
+GET_ADD_SUB_COMPANY_URL = '/org/group/getAddSubCompanyUrl'
+REMOVE_SUB_COMPANY = '/org/group/removeSubCompany'
+GET_CHANGE_COMPANY_MAJOR_URL = '/org/group/getChangeCompanyMajorUrl'
 
 
 class OrgClient(FddClient):

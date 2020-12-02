@@ -4,8 +4,8 @@ from .client import FddClient
 """
 员工相关接口
 """
-ADD_EMPLOYEE = 'org/employee/addEmployee'
-DEL_EMPLOYEE = 'org/employee/delEmployee'
+ADD_EMPLOYEE = '/org/employee/addEmployee'
+DEL_EMPLOYEE = '/org/employee/delEmployee'
 
 
 class EmployeeClient(FddClient):

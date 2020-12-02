@@ -13,14 +13,15 @@ CANCEL = '/signtasks/cancel'
 GET_SENT_URL = '/signtasks/getSentUrl'
 URGE_SIGN = '/signtasks/urgeSign'
 GET_SIGN_PREVIEW_URL = '/signtasks/getSignPreviewUrl'
-CREATE_TASK_BY_FILE = 'signtasks/createTaskByFile'
+CREATE_TASK_BY_FILE = '/signtasks/createTaskByFile'
+CREATE_TASK_BY_DRAFT_ID = '/signtasks/createTaskByDraftId'
 
 # 批量签署接口
-BATCH_CREATE_BY_DRAFT_ID = 'batch/signtasks/createByDraftId'
-BATCH_SENT = 'batch/signtasks/sent'
-BATCH_ADD_BY_DRAFT_ID = 'batch/signtasks/addByDraftId'
-BATCH_GET_SIGN_URL = 'batch/signtasks/getSignUrl'
-BATCH_GET_SIGNTASKS_BY_BATCH_NO = 'batch/signtasks/getSigntasksByBatchNo'
+BATCH_CREATE_BY_DRAFT_ID = '/batch/signtasks/createByDraftId'
+BATCH_SENT = '/batch/signtasks/sent'
+BATCH_ADD_BY_DRAFT_ID = '/batch/signtasks/addByDraftId'
+BATCH_GET_SIGN_URL = '/batch/signtasks/getSignUrl'
+BATCH_GET_SIGNTASKS_BY_BATCH_NO = '/batch/signtasks/getSigntasksByBatchNo'
 
 
 class SignTaskClient(FddClient):
@@ -59,6 +60,10 @@ class SignTaskClient(FddClient):
     # 依据原始文件创建签署任务
     def create_task_by_file(self, data={}):
         return CommonClient.post_json(self, CREATE_TASK_BY_FILE, data)
+
+    # 草稿文件创建签署任务
+    def create_task_by_draft_id(self, data={}):
+        return CommonClient.post_json(self, CREATE_TASK_BY_DRAFT_ID, data)
 
     # 依据草稿id批量创建签署任务
     def batch_create_by_draft_id(self, data={}):

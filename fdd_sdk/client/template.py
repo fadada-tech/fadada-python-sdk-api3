@@ -1,10 +1,9 @@
 from .client import CommonClient
 from .client import FddClient
 
-"""
+'''
 模板相关接口
-"""
-
+'''
 
 UPLOAD_COMPANY_TEMPLATE_FILE = '/template/uploadCompanyTemplateFile'
 UPDATE_COMPANY_TEMPLATE = '/template/updateCompanyTemplate'
@@ -13,8 +12,12 @@ DEL_COMPANY_TEMPLATE_FILE = '/template/delCompanyTemplateFile'
 GET_COMPANY_TEMPLATE_PREVIEW_URL = '/template/getCompanyTemplatePreviewUrl'
 QUERY_COMPANY_TEMPLATE_LIST = '/template/queryCompanyTemplateList'
 DOWNLOAD_COMPANY_TEMPLATE_FILE = '/template/downloadCompanyTemplateFile'
-GET_TEMPLATE_DETAIL_BY_ID = 'documents/getTemplateDetailById'
-CREATE_BY_TEMPLATE_ID = 'documents/createByTemplate'
+GET_TEMPLATE_DETAIL_BY_ID = '/documents/getTemplateDetailById'
+CREATE_BY_TEMPLATE_ID = '/documents/createByTemplate'
+
+TEMPLATE_INIT = '/template/templateInit'
+GET_TEMPLATE_MAIN_URL = '/template/getTemplateMainUrl'
+GET_TEMPLATE_DETAIL = '/template/getTemplateDetail'
 
 
 class TemplateClient(FddClient):
@@ -55,3 +58,15 @@ class TemplateClient(FddClient):
     # 填充模板
     def create_by_template_id(self, data={}):
         return CommonClient.post_json(self, CREATE_BY_TEMPLATE_ID, data)
+
+    # 模板初始化
+    def template_init(self, data={}):
+        return CommonClient.post_json(self, TEMPLATE_INIT, data)
+
+    # 获取模板页面编辑链接
+    def get_template_main_url(self, data={}):
+        return CommonClient.post_json(self, GET_TEMPLATE_MAIN_URL, data)
+
+    # 模板详请信息
+    def get_template_detail(self, data={}):
+        return CommonClient.post_json(self, GET_TEMPLATE_DETAIL, data)
