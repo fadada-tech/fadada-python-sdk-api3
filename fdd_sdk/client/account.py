@@ -13,6 +13,7 @@ CHECK_ACCOUNT_INFO_PATH = '/accounts/checkAccountInfo'
 GET_ACCESS_OBJECT_INFO = '/accounts/getAccessObjectInfo'
 
 GET_FILE_BASE64 = '/accounts/getFileBase64'
+GET_UNION_IDS = '/accounts/getUnionIds'
 
 # 第三方服务相关接口
 GET_OPEN_SERVER_URL = '/thirdUser/getOpenServerUrl'
@@ -61,3 +62,7 @@ class AccountClient(FddClient):
     # 根据uuid下载文件base64
     def get_file_base64(self, data):
         return CommonClient.post_json(self, GET_FILE_BASE64, data)
+
+    # 根据clientId获取unionId
+    def get_union_ids(self, data):
+        return CommonClient.post_json(self, GET_UNION_IDS, data)

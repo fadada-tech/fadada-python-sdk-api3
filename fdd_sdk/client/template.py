@@ -18,6 +18,7 @@ CREATE_BY_TEMPLATE_ID = '/documents/createByTemplate'
 TEMPLATE_INIT = '/template/templateInit'
 GET_TEMPLATE_MAIN_URL = '/template/getTemplateMainUrl'
 GET_TEMPLATE_DETAIL = '/template/getTemplateDetail'
+ADD_WIDGET = '/template/addWidget'
 
 
 class TemplateClient(FddClient):
@@ -70,3 +71,7 @@ class TemplateClient(FddClient):
     # 模板详请信息
     def get_template_detail(self, data={}):
         return CommonClient.post_json(self, GET_TEMPLATE_DETAIL, data)
+
+    # 添加自定义控件
+    def add_widget(self, data={}):
+        return CommonClient.post_json(self, ADD_WIDGET, data)

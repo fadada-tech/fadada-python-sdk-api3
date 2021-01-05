@@ -7,8 +7,8 @@ from .client import CommonClient
 GET_TOKEN_PATH = '/oauth2/accessToken'
 GET_AUTHORIZE_URL_PATH = '/oauth2/getAuthorizeUrl'
 
-GET_AUTO_SIGN_AUTH_URL = "/oauth2/getAutoSignAuthUrl";
-CANCEL_AUTH_SIGN_AUTH = "/oauth2/cancelAuthSignAuth";
+GET_AUTO_SIGN_AUTH_URL = '/oauth2/getAutoSignAuthUrl'
+CANCEL_AUTH_SIGN_AUTH = '/oauth2/cancelAuthSignAuth'
 
 
 class Oauth2Client(FddClient):
