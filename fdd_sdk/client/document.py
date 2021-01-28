@@ -12,6 +12,7 @@ LOOK_UP_COORDINATES = '/documents/lookUpCoordinates'
 VERIFY_SIGNATURE = '/documents/verifySignature'
 CONTRACT_REPORT_DOWNLOAD = '/documents/professionalContractReportDownload'
 DOWNLOAD_EVIDENCE_REPORT = '/documents/downloadEvidenceReport'
+UPLOAD_FILE_BY_URL = "/documents/uploadFileByUrl";
 
 
 class DocumentClient(FddClient):
@@ -28,7 +29,6 @@ class DocumentClient(FddClient):
     # 下载草稿文档
     def get_by_draft_id(self, data={}):
         return CommonClient.post_stream(self, GET_BY_DRAFT_ID, data)
-
 
     # 关键字查询坐标
     def look_up_coordinates(self, data={}):
@@ -47,3 +47,7 @@ class DocumentClient(FddClient):
     # 下载公证处报告
     def download_evidence_report(self, data={}):
         return CommonClient.post_stream(self, DOWNLOAD_EVIDENCE_REPORT, data)
+
+    # 文件上传通过链接
+    def upload_file_by_url(self, data={}):
+        return CommonClient.post_stream(self, UPLOAD_FILE_BY_URL, data)
