@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="fdd_sdk",
-    version="1.0.0",
+    version="1.1.0",
     author="yh128",
     packages=find_packages(),
     install_requires=["distribute"],

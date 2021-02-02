@@ -14,6 +14,7 @@ GET_ACCESS_OBJECT_INFO = '/accounts/getAccessObjectInfo'
 
 GET_FILE_BASE64 = '/accounts/getFileBase64'
 GET_UNION_IDS = '/accounts/getUnionIds'
+PURCHASE = '/order/purchase'
 
 # 第三方服务相关接口
 GET_OPEN_SERVER_URL = '/thirdUser/getOpenServerUrl'
@@ -66,3 +67,7 @@ class AccountClient(FddClient):
     # 根据clientId获取unionId
     def get_union_ids(self, data):
         return CommonClient.post_json(self, GET_UNION_IDS, data)
+
+    # 生态用户下单
+    def purchase(self, data):
+        return CommonClient.post_json(self, PURCHASE, data)
