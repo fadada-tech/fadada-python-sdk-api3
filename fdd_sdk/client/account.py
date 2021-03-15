@@ -11,6 +11,7 @@ GET_COMPANY_UNIONID_URL_PATH = '/accounts/getCompanyUnionIdUrl'
 GET_COMPANY_INFO_PATH = '/accounts/getCompanyInfo'
 CHECK_ACCOUNT_INFO_PATH = '/accounts/checkAccountInfo'
 GET_ACCESS_OBJECT_INFO = '/accounts/getAccessObjectInfo'
+GET_PERSON_AND_COMPANY_UNION_ID_URL = '/accounts/getPersonAndCompanyUnionIdUrl';
 
 GET_FILE_BASE64 = '/accounts/getFileBase64'
 GET_UNION_IDS = '/accounts/getUnionIds'
@@ -71,3 +72,7 @@ class AccountClient(FddClient):
     # 生态用户下单
     def purchase(self, data):
         return CommonClient.post_json(self, PURCHASE, data)
+
+    # 获取个人企业unionId地址
+    def get_person_and_company_union_id_url(self, data):
+        return CommonClient.post_json(self, GET_PERSON_AND_COMPANY_UNION_ID_URL, data)
