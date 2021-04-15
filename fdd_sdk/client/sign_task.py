@@ -17,6 +17,8 @@ CREATE_TASK_BY_FILE = '/signtasks/createTaskByFile'
 CREATE_TASK_BY_DRAFT_ID = '/signtasks/createTaskByDraftId'
 UNLOCK = '/signtasks/unlock'
 GET_QUICK_SIGN_URL = '/signtasks/getQuickSignUrl'
+DOWNLOAD_SIGN_TASK = '/signtasks/downloadSignTask'
+
 
 # 批量签署接口
 BATCH_CREATE_BY_DRAFT_ID = '/batch/signtasks/createByDraftId'
@@ -74,6 +76,11 @@ class SignTaskClient(FddClient):
     # 依据草稿id批量创建签署任务
     def batch_create_by_draft_id(self, data={}):
         return CommonClient.post_json(self, BATCH_CREATE_BY_DRAFT_ID, data)
+
+    # 下载签署任务
+    def download_sign_task(self, data={}):
+        return CommonClient.post_stream(self, DOWNLOAD_SIGN_TASK, data)
+
 
     # 根据批次号批量发起签署任务
     def batch_sent(self, data={}):

@@ -10,6 +10,7 @@ GET_FILL_FILE_URL = '/reviseTask/getFillFileUrl'
 CANCEL_REVISE_TASK = '/reviseTask/cancelReviseTask'
 REVISE_TASK_DETAIL = '/reviseTask/reviseTaskDetail'
 SAVE_FILL_VALUES = '/reviseTask/saveFillValues'
+DOWNLOAD_REVISE_TASK = '/reviseTask/downloadReviseTask'
 
 
 class ReviseTaskClient(FddClient):
@@ -32,3 +33,7 @@ class ReviseTaskClient(FddClient):
     # 接口填充
     def save_fill_values(self, data={}):
         return CommonClient.post_json(self, SAVE_FILL_VALUES, data)
+
+    # 定稿任务下载
+    def download_revise_task(self, data={}):
+        return CommonClient.post_stream(self, DOWNLOAD_REVISE_TASK, data)
