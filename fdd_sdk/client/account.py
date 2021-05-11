@@ -15,6 +15,8 @@ GET_PERSON_AND_COMPANY_UNION_ID_URL = '/accounts/getPersonAndCompanyUnionIdUrl';
 
 GET_FILE_BASE64 = '/accounts/getFileBase64'
 GET_UNION_IDS = '/accounts/getUnionIds'
+GET_MODIFY_MOBILE_URL = '/accounts/getModifyMobileUrl'
+
 PURCHASE = '/order/purchase'
 
 # 第三方服务相关接口
@@ -76,3 +78,7 @@ class AccountClient(FddClient):
     # 获取个人企业unionId地址
     def get_person_and_company_union_id_url(self, data):
         return CommonClient.post_json(self, GET_PERSON_AND_COMPANY_UNION_ID_URL, data)
+
+    # 获取更换用户手机号地址
+    def get_modify_mobile_url(self, data):
+        return CommonClient.post_json(self, GET_MODIFY_MOBILE_URL, data)

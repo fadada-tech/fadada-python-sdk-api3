@@ -18,7 +18,10 @@ CREATE_TASK_BY_DRAFT_ID = '/signtasks/createTaskByDraftId'
 UNLOCK = '/signtasks/unlock'
 GET_QUICK_SIGN_URL = '/signtasks/getQuickSignUrl'
 DOWNLOAD_SIGN_TASK = '/signtasks/downloadSignTask'
+CHANGE_SIGNER = '/signtasks/changeSigner'
+QUERY_SIGN_TASKS = '/signtasks/querySignTasks'
 
+GET_BATCH_SIGN_URL = '/signtasks/batch/getBatchSignUrl'
 
 # 批量签署接口
 BATCH_CREATE_BY_DRAFT_ID = '/batch/signtasks/createByDraftId'
@@ -81,7 +84,6 @@ class SignTaskClient(FddClient):
     def download_sign_task(self, data={}):
         return CommonClient.post_stream(self, DOWNLOAD_SIGN_TASK, data)
 
-
     # 根据批次号批量发起签署任务
     def batch_sent(self, data={}):
         return CommonClient.post_json(self, BATCH_SENT, data)
@@ -101,3 +103,15 @@ class SignTaskClient(FddClient):
     # 获取快捷签署链接
     def get_quick_sign_url(self, data={}):
         return CommonClient.post_json(self, GET_QUICK_SIGN_URL, data)
+
+    # 获取批量签署链接
+    def get_batch_sign_url(self, data={}):
+        return CommonClient.post_json(self, GET_BATCH_SIGN_URL, data)
+
+    # 签署任务变更签署节点
+    def change_signer(self, data={}):
+        return CommonClient.post_json(self, CHANGE_SIGNER, data)
+
+    # 查询签署任务列表
+    def query_sign_tasks(self, data={}):
+        return CommonClient.post_json(self, QUERY_SIGN_TASKS, data)

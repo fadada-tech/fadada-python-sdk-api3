@@ -12,6 +12,7 @@ DEL_EMPLOYEE = '/org/group/delEmployee'
 GET_ADD_SUB_COMPANY_URL = '/org/group/getAddSubCompanyUrl'
 REMOVE_SUB_COMPANY = '/org/group/removeSubCompany'
 GET_CHANGE_COMPANY_MAJOR_URL = '/org/group/getChangeCompanyMajorUrl'
+BATCH_SYNC_EMPLOYEE = '/org/employee/batchSyncEmployee'
 
 
 class OrgClient(FddClient):
@@ -42,3 +43,7 @@ class OrgClient(FddClient):
     # 获取变更公司管理员url
     def get_change_company_major_url(self, data={}):
         return CommonClient.post_json(self, GET_CHANGE_COMPANY_MAJOR_URL, data)
+
+    # 批量同步员工数据
+    def batch_sync_employee(self, data={}):
+        return CommonClient.post_json(self, BATCH_SYNC_EMPLOYEE, data)
